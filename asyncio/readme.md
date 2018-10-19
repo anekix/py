@@ -1,3 +1,5 @@
+NOTE: to understand the async model in python , it will be easier when we undersatnd async model of javascript.
+
 ## async programming with coroutines
 
 There are two ways to get the result of a coroutine .
@@ -49,3 +51,5 @@ steps:
 * add tasks to the event loop
 * wait for tasks to get cimpleted
 * get the results back using `task.result()`
+
+
