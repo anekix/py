@@ -16,7 +16,7 @@ from operator import itemgetter
 sorted(l, key=itemgetter('age'))
 ```
 
-##NOTE:
+## NOTE:
 the “value” of an immutable object can’t change, but it’s constituent objects can.
 ```python
 l = [1,2,3]
