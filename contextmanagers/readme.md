@@ -50,6 +50,18 @@ class File:
       self.f.close()
       
 ```
+## IMPLEMENTING CONTEXTMANAGERS USING GENERATORS
+use in-built contextlib module
+
+```python
+from contextlib import contextmanager
+
+@contextmanager
+def open_file(name):
+    f = open(name, 'w')
+    yield f
+    f.close()
+```
 
 use it as 
 ```python
