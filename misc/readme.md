@@ -69,3 +69,32 @@ for i in n:
 ['sam']
 ['guoul']
 ```
+
+## Commo Python scope mistake
+```python
+x = 10
+def foo():
+ x += 2
+ print x
+ 
+foo()
+
+UnboundLocalError: local variable 'x' referenced before assignment
+
+```
+Its because when we *** make an assignment to a variable inside a block , the variable is automatically considered to be local to that scope***
+
+now consider this example
+```python
+
+lst = [1,2,3]
+def foo1():
+ lst.append(5)  # Ok
+ 
+def foo2():
+ lst = lst + [5] # Error dafaq???
+ ```
+ This happens because `foo1` is not making an assignment to the `lst` whereas `foo2` is.
+ 
+ 
+ 
