@@ -97,4 +97,50 @@ def foo2():
  This happens because `foo1` is not making an assignment to the `lst` whereas `foo2` is.
  
  
+ ## Late binding closures
+ ```python
+ >>> def create_multipliers():
+...     return [lambda x : i * x for i in range(5)]
+
+>>> for multiplier in create_multipliers():
+...     print multiplier(2)
+...
+```
+You might expect the following output:
+```
+0
+2
+4
+6
+8
+```
+But you actually get:
+```
+8
+8
+8
+8
+8
+```
+Surprise!
+
+This happens due to Python’s late binding behavior which says that the values of variables used in closures are looked up at the time the inner function is called. So in the above code, whenever any of the returned functions are called, the value of i is looked up in the surrounding scope at the time it is called (and by then, the loop has completed, so i has already been assigned its final value of 4).
+
+The solution to this common Python problem is a bit of a hack:
+```python
+>>> def create_multipliers():
+...     return [lambda x, i=i : i * x for i in range(5)]
+...
+>>> for multiplier in create_multipliers():
+...     print multiplier(2)
+...
+0
+2
+4
+6
+8
+```
+Voilà! We are taking advantage of default arguments here to generate anonymous functions in order to achieve the desired behavior. Some would call this elegant. Some would call it subtle. Some hate it. But if you’re a Python developer, it’s important to understand in any case.
+
+
  
