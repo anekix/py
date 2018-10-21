@@ -30,3 +30,42 @@ print obj
 ```
 
 `obj` itself has no method to change its contents but the list object here can be changes & since its just a refrence that contents of the list will change inside the `obj`
+
+## Mutable defaults argument (mistake)
+if the argument is a mutable , its evalutaed once when the function is defined , not very time when the function is called.
+
+```py
+def foo(name, names=[]):
+ names.append(name)
+ print (names)
+
+n = ['jack','sam','guoul']
+for i in n:
+ foo(i)
+ 
+# output  
+['jack']
+['jack', 'sam']
+['jack', 'sam', 'guoul']
+
+```
+To modify that:
+```python
+def foo(name,names=None):
+ if not names:
+  names = []
+ names.append(name)
+ print (names)
+
+
+
+n = ['jack','sam','guoul']
+for i in n:
+ foo(i)
+ 
+# output
+
+['jack']
+['sam']
+['guoul']
+```
